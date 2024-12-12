@@ -1,16 +1,15 @@
 package com.borzyshka.test.test;
 
-import com.borzyshka.test.service.ReportCreator;
 import com.borzyshka.test.dto.CallRecord;
 import com.borzyshka.test.dto.ReportRecord;
-import com.github.javafaker.Faker;
+import com.borzyshka.test.service.JsonParser;
+import com.borzyshka.test.service.ReportCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,46 +19,35 @@ public class CalculateRecordsTest extends AbstractTestNGSpringContextTests {
 
   @Autowired
   protected ReportCreator reportCreator;
+  @Autowired
+  protected JsonParser jsonParser;
 
-  @Test
-  public void testCombineRecords() {
+  @DataProvider(name = "callDataProvider")
+  public Object[][] callDataProvider() {
+    return new Object[][]{
+            //
+            new Object[]{
+                    jsonParser.parseFileAsList(CallRecord.class, "data/test1_input.json"),
+                    jsonParser.parseFileAsList(ReportRecord.class, "data/test1_expected.json")
+            },
+            //
+            new Object[]{
+                    jsonParser.parseFileAsList(CallRecord.class, "data/test2_input.json"),
+                    jsonParser.parseFileAsList(ReportRecord.class, "data/test2_expected.json")
+            },
+            //
+            new Object[]{
+                    jsonParser.parseFileAsList(CallRecord.class, "data/test3_input.json"),
+                    jsonParser.parseFileAsList(ReportRecord.class, "data/test3_expected.json")
+            }
+    };
+  }
+
+  @Test(dataProvider = "callDataProvider")
+  public void testCalculateReport(List<CallRecord> input, List<ReportRecord> expected) {
     //
-    final Instant now = Instant.now();
-    List<CallRecord> records = List.of(
-            CallRecord.builder()
-                    .callId(Faker.instance().number().digits(10))
-                    .operatorId("1234567890")
-                    .countryCode("381")
-                    .number("123456785")
-                    .startTime(now.minus(10, ChronoUnit.MINUTES))
-                    .endTime(now)
-                    .build(),
-            CallRecord.builder()
-                    .callId(Faker.instance().number().digits(10))
-                    .operatorId("1234567890")
-                    .countryCode("381")
-                    .number("123456785")
-                    .startTime(now.minus(25, ChronoUnit.MINUTES))
-                    .endTime(now.minus(9, ChronoUnit.MINUTES))
-                    .build(),
-            CallRecord.builder()
-                    .callId(Faker.instance().number().digits(10))
-                    .operatorId("0123456789")
-                    .countryCode("381")
-                    .number("123456785")
-                    .startTime(now.minus(10, ChronoUnit.MINUTES))
-                    .endTime(now)
-                    .build()
-    );
+    List<ReportRecord> actual = reportCreator.calculateReport(input);
     //
-    List<ReportRecord> expected = List.of(
-            ReportRecord.builder().operatorId("1234567890").phoneNumber("(381)123456785")
-                    .amount(2L).totalDuration(1560L).build(),
-            ReportRecord.builder().operatorId("0123456789").phoneNumber("(381)123456785")
-                    .amount(1L).totalDuration(600L).build()
-    );
-    //
-    List<ReportRecord> actual = reportCreator.calculateReport(records);
     assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
   }
 }
