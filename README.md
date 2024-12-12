@@ -14,7 +14,8 @@ The following software should be installed
 Third party service uploads calls information to DB when an operator finishes a call.
 
 ````json
-[
+{
+  "records": [
     {
       "callId": "123457890",
       "operatorId": "123457890",
@@ -23,8 +24,8 @@ Third party service uploads calls information to DB when an operator finishes a 
       "startTime": "2019-10-12T07:20:50.52Z",
       "endTime": "2019-10-12T07:20:50.52Z"
     }
-]
-
+  ]
+}
 ````
 
 As a manager I want to see summarized call report for all calls made during the requested month of the current year
