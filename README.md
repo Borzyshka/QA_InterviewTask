@@ -11,7 +11,7 @@ The following software should be installed
 
 ### Summary:
 
-Third party services uploads calls information to DB when an operator finishes a call.
+Third party service uploads calls information to DB when an operator finishes a call.
 
 ````json
 {
