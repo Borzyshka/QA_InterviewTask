@@ -57,7 +57,7 @@ Run call-reports application locally:
 Example
 
 ````
-java -jar calls-report-{versionId}.jar --server.port=8090
+java -jar calls-report.jar --server.port=8090
 ````
 
 2. wait for application to start
