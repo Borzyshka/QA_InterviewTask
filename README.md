@@ -47,6 +47,8 @@ As a manager I want to see summarized call report for all calls made during the 
 
 Run call-reports application locally:
 
+### Run via jar file
+
 1. open "manual" folder
 2. run the following command `java -jar calls-report.jar` with parameters listed below
 
@@ -59,12 +61,28 @@ Example
 ````
 java -jar calls-report.jar --server.port=8090
 ````
+3. wait for application to start
+4. application will run on the `http://127.0.0.1:{port}` endpoint. Default port is 8080
+5. swagger documetation is avaulable at `http://127.0.0.1:{port}/openapi.html`
 
-2. wait for application to start
-3. application will run on the `http://127.0.0.1:{port}` endpoint. Default port is 8080
-4. swagger documetation is avaulable at `http://127.0.0.1:{port}/openapi.html`
+### Run via docker
 
-#### Task
+1. open "manual" folder
+2. build docker image
+Example
+````
+docker run -t calls-report:latest .
+````
+3. run docker image
+````
+docker run -p 8080:8080 calls-report:latest
+````
+3. wait for application to start
+4. application will run on the `http://127.0.0.1:{port}` endpoint. Default port is 8080
+5. swagger documetation is avaulable at `http://127.0.0.1:{port}/openapi.html`
+
+
+### Task
 
 1. Groom the story and create a test plan for the functionality
 2. Execute tests
