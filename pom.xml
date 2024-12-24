@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.borzyshka</groupId>
-    <artifactId>TestFramework</artifactId>
+    <artifactId>QA_InterviewTask</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TestFramework</name>
-    <description>TestFramework</description>
+    <name>QA_InterviewTask</name>
+    <description>QA_InterviewTask</description>
 
     <properties>
         <java.version>17</java.version>

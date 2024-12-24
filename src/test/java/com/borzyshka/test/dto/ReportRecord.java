@@ -1,10 +1,12 @@
 package com.borzyshka.test.dto;
 
-import lombok.Builder;
+import lombok.Data;
 
-@Builder
-public record ReportRecord(String operatorId,
-                           String phoneNumber,
-                           long totalDuration,
-                           long amount) {
+@Data
+public class ReportRecord {
+
+  private String operatorId;
+  private String phoneNumber;
+  private long totalDuration;
+  private long amount;
 }

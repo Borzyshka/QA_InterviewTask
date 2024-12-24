@@ -1,5 +1,6 @@
 package com.borzyshka.test;
 
+import com.borzyshka.test.service.ReportCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,6 +36,11 @@ public class TestConfiguration {
     mapper.registerModule(new ParameterNamesModule());
 
     return mapper;
+  }
+
+  @Bean
+  public ReportCreator reportCreator() {
+    return new ReportCreator();
   }
 
 }
