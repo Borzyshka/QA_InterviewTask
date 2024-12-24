@@ -18,7 +18,7 @@ public class JsonParser {
 
   public <T> List<T> parseFileAsList(Class<T> targetType, String resourcePath) {
     try {
-    File file = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource(resourcePath)).toURI());
+      File file = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource(resourcePath)).toURI());
       return objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, targetType));
     } catch (IOException | URISyntaxException e) {
       throw new RuntimeException(e);

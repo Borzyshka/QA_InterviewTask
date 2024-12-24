@@ -39,6 +39,11 @@ public class CalculateRecordsTest extends AbstractTestNGSpringContextTests {
             new Object[]{
                     jsonParser.parseFileAsList(CallRecord.class, "data/test3_input.json"),
                     jsonParser.parseFileAsList(ReportRecord.class, "data/test3_expected.json")
+            },
+            //
+            new Object[]{
+                    jsonParser.parseFileAsList(CallRecord.class, "data/test4_input.json"),
+                    jsonParser.parseFileAsList(ReportRecord.class, "data/test4_expected.json")
             }
     };
   }

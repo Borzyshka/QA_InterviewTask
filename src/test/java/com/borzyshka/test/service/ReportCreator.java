@@ -12,7 +12,7 @@ import java.util.List;
 public class ReportCreator {
 
 
-  public List<ReportRecord> calculateReport(List<CallRecord> records){
+  public List<ReportRecord> calculateReport(List<CallRecord> records) {
     //TODO please implement method based on user story requirements
     return List.of();
 

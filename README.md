@@ -61,6 +61,7 @@ Example
 ````
 java -jar calls-report.jar --server.port=8090
 ````
+
 3. wait for application to start
 4. application will run on the `http://127.0.0.1:{port}` endpoint. Default port is 8080
 5. swagger documetation is avaulable at `http://127.0.0.1:{port}/openapi.html`
@@ -69,18 +70,21 @@ java -jar calls-report.jar --server.port=8090
 
 1. open "manual" folder
 2. build docker image
-Example
+   Example
+
 ````
 docker run -t calls-report:latest .
 ````
+
 3. run docker image
+
 ````
 docker run -p 8080:8080 calls-report:latest
 ````
+
 3. wait for application to start
 4. application will run on the `http://127.0.0.1:{port}` endpoint. Default port is 8080
 5. swagger documetation is avaulable at `http://127.0.0.1:{port}/openapi.html`
-
 
 ### Task
 
